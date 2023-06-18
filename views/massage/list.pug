@@ -1,0 +1,98 @@
+extends ../layout
+
+block content
+    h1= title
+    button(id='create_massage') Создать
+    button(id='update_massage') Редактировать
+    button(id='delete_massage') Удалить
+    table
+        tr
+            th id
+            th Дата
+            th Тип Массаж
+            th Дополнительные услуги
+            th Массажист
+        each item in massage
+            tr
+                td= item.id
+                td= item.date
+                td= item.id_type
+                td= item.id_more_service
+                td= item.id_phg
+
+    div#create_massage_popup.q-window
+          div.q-window-block(style="width:400px;height:220px;margin:-150px 0 0 -400px")
+            div.q-window-header Создать заказ
+              a#create_massage_popup_close(style="position: relative;left: 300px;") X 
+            div.q-window-body.q-form
+              div.q-window-filters-form
+                div.q-form-data
+                  label(for="inpDate") Дата
+                  input#inpDate(type="date")
+                div.q-form-data
+                  label(for="inpId_type") тип
+                  select#inpId_type
+                    each item in massage_type
+                        option(value= item.id)= item.label
+                div.q-form-data
+                  label(for="inpId_service") Дополнительные услуги
+                  select#inpId_service
+                    each item in more_service
+                        option(value= item.id)= item.label
+                div.q-form-data
+                  label(for="inptherapist") Массажист
+                  select#inpId_therapist
+                    each item in therapist
+                        option(value= item.id)= item.label
+
+            div.q-buttons
+              a#submit_create_massage Создать
+              a#cancel_create_massage Отменить
+
+    div#delete_massage_popup.q-window
+          div.q-window-block(style="width:400px;height:220px;margin:-150px 0 0 -400px")
+            div.q-window-header Удалить массаж
+              a#delete_massage_popup_close(style="position: relative;left: 300px;") X 
+            div.q-window-body.q-form
+              div.q-window-filters-form
+                div.q-form-data
+                  label(for="inpId") ID
+                  select#inpId
+                    each item in massage
+                        option(value=item.id)= item.id 
+            div.q-buttons
+              a#submit_delete_massage Удалить
+              a#cancel_delete_massage Отменить
+        
+    div#update_massage_popup.q-window
+          div.q-window-block(style="width:400px;height:220px;margin:-150px 0 0 -400px")
+            div.q-window-header Изменть дополнительную услугу
+              a#update_massage_popup_close(style="position: relative;left: 300px;") X 
+            div.q-window-body.q-form
+              div.q-window-filters-form
+                div.q-form-data
+                  label(for="UpId") ID
+                  select#UpId
+                    each item in massage
+                        option(value=item.id)= item.id
+                div.q-form-data
+                  label(for="UpDate") Дата
+                  input#UpDate(type="date")
+                div.q-form-data
+                  label(for="UpId_type") тип
+                  select#UpId_type
+                    each item in massage_type
+                        option(value= item.id)= item.label
+                div.q-form-data
+                  label(for="UpId_more_service") Дополнительные услуги
+                  select#UpId_more_service
+                    each item in more_service
+                        option(value= item.id)= item.label
+                div.q-form-data
+                  label(for="UpPhg") Массажист
+                  select#UpPhg
+                    each item in therapist
+                        option(value= item.id)= item.label
+            div.q-buttons
+              a#submit_update_massage Изменить
+              a#cancel_update_massage Отменить

@@ -1,0 +1,61 @@
+extends ../layout
+
+block content
+    h1= title
+    button(id='create_more_service') Создать
+    button(id='delete_more') Удалить
+    button(id='update_more_service') Изменить
+    table
+        tr 
+            th id
+            th Дополнительные услуги
+        each item in more_service
+            tr
+                td= item.id
+                td= item.label
+
+    div#create_more_service_popup.q-window
+          div.q-window-block(style="width:400px;height:220px;margin:-150px 0 0 -400px")
+            div.q-window-header Добавить дополнительную услугу
+              a#create_more_service_popup_close(style="position: relative;left: 300px;") X 
+            div.q-window-body.q-form
+              div.q-window-filters-form
+                div.q-form-data
+                  label(for="inLabel") Дополнительные услуги
+                  input#inLabel(more="text")
+            div.q-buttons
+              a#submit_create_more_service Создать
+              a#cancel_create_more_service Отменить
+
+    div#delete_more_popup.q-window
+          div.q-window-block(style="width:400px;height:220px;margin:-150px 0 0 -400px")
+            div.q-window-header Удалить дополнительную услугу
+              a#delete_more_popup_close(style="position: relative;left: 300px;") X 
+            div.q-window-body.q-form
+              div.q-window-filters-form
+                div.q-form-data
+                  label(for="inpId") ID
+                  select#inpId
+                    each item in more_service
+                        option(value=item.id)= item.id 
+            div.q-buttons
+              a#submit_delete_more Удалить
+              a#cancel_delete_more Отменить
+
+    div#update_more_service_popup.q-window
+          div.q-window-block(style="width:400px;height:220px;margin:-150px 0 0 -400px")
+            div.q-window-header Изменть дополнительную услугу
+              a#update_more_service_popup_close(style="position: relative;left: 300px;") X 
+            div.q-window-body.q-form
+              div.q-window-filters-form
+                div.q-form-data
+                  label(for="inpUpId") ID
+                  select#inpUpId
+                    each item in more_service
+                        option(value=item.id)= item.id
+                div.q-form-data
+                  label(for="#inUpLabel") Дополнительные услуги
+                  input#inUpLabel(type="text")
+            div.q-buttons
+              a#submit_update_more_service Изменить
+              a#cancel_update_more_service Отменить
